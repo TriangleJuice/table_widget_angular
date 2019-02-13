@@ -1,0 +1,43 @@
+.aui-smart-table-filters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.aui-smart-table-filter {
+  padding-right: .75rem;
+  padding-bottom: .5rem;
+}
+
+.aui-smart-table-list {
+  display: block;
+  position: relative;
+}
+
+.loading-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(160, 160, 160, .3);
+}
+
+.table-actions {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+
+  .table-actions-separator {
+    display: inline-block;
+    line-height: 3rem;
+    margin: 0 .5rem;
+  }
+
+  .table-actions-separator::before {
+    content: "|";
+  }
+}

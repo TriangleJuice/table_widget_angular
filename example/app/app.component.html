@@ -1,6 +1,14 @@
 <header>
-  <h1>Smart Widget Starter Kit</h1>
+  <h1>Table Widget</h1>
 </header>
-  <div class="u-container u-bg-light">
-    <aui-example></aui-example>
-  </div>
+<div class="u-container u-bg-light">
+  <aui-smart-table
+    [dossierTypeIds]="dossierTypes"
+    [apiUrl]="'api/dossierlist'"
+    [columnTypes]="tableColumnTypes"
+    [configuration]="dossierListConfig"
+    (configurationChange)="onConfigurationChange($event)"
+    [rowDetailUrl]="'/dossiers'"
+    [httpHeaders]="headers">
+  </aui-smart-table>
+</div>

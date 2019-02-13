@@ -1,0 +1,27 @@
+<ng-container *ngIf="filter && filter.options && filter.id">
+  <ng-container *ngIf="!optional; else optional_filter">
+    <div class="a-input has-icon-right aui-select-filter">
+      <label class="a-input__label" [for]="id">{{ filter.label }}:</label>
+      <div class="a-input__wrapper a-input--filter">
+        <select [id]="id" name="filter-{{ filter.id }}" [(ngModel)]="value" (ngModelChange)="onFilter(value.value)">
+          <option value="null" disabled="disabled" [selected]="true" *ngIf="filter.placeholder && filter.placeholder.length">{{ filter.placeholder }}</option>
+          <option *ngFor="let option of filter.options;" [ngValue]="option">{{ option.label }}</option>
+        </select>
+        <span class="fa fa-angle-down"></span>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #optional_filter>
+    <div class="a-input has-icon-right a-input--inline a-input--small aui-select-filter optional">
+      <label class="a-input__label a-input__label--inline" [for]="id">{{ filter.label }}:</label>
+      <div class="a-input__wrapper a-input__wrapper--inline a-input--filter">
+        <select [id]="id" name="filter-{{ filter.id }}" [(ngModel)]="value" (ngModelChange)="onFilter(value.value)">
+          <option value="null" disabled="disabled" [selected]="true" *ngIf="filter.placeholder && filter.placeholder.length">{{ filter.placeholder }}</option>
+          <option *ngFor="let option of filter.options;" [ngValue]="option">{{ option.label }}</option>
+        </select>
+        <span class="fa fa-angle-down"></span>
+      </div>
+      <span class="close-btn"><button class="a-button-transparent a-button--default a-button--small has-icon" (click)="onClose()"><i class="fa fa-close"></i></button></span>
+    </div>
+  </ng-template>
+</ng-container>

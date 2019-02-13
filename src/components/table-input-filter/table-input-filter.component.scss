@@ -1,0 +1,25 @@
+.aui-input-filter.regular {
+  button.search-btn {
+    position: absolute;
+  }
+
+  button.clear-btn {
+    position: absolute;
+    right: 0;
+    bottom: .35rem;
+  }
+}
+
+.aui-input-filter.optional {
+  padding-right: 2em;
+
+  input {
+    padding-right: 2em;
+  }
+
+  button.close-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}

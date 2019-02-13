@@ -1,0 +1,52 @@
+<div class="u-margin-bottom-xs">
+  <div class="aui-smart-table-filters">
+    <aui-table-input-filter class="aui-smart-table-filter" *ngIf="genericFilter" [filter]="genericFilter" (update)="onFilter($event)"></aui-table-input-filter>
+    <ng-container *ngFor="let filter of visibleFilters" [ngSwitch]="filter.type">
+      <ng-container *ngSwitchCase="'select'">
+        <aui-table-select-filter class="aui-smart-table-filter" [filter]="filter" (update)="onFilter($event)"></aui-table-select-filter>
+      </ng-container>
+      <ng-container *ngSwitchCase="'input'">
+        <aui-table-input-filter class="aui-smart-table-filter" [filter]="filter" (update)="onFilter($event)"></aui-table-input-filter>
+      </ng-container>
+      <ng-container *ngSwitchCase="'datepicker'">
+        <aui-table-datepicker-filter class="aui-smart-table-filter" [filter]="filter" (update)="onFilter($event)"></aui-table-datepicker-filter>
+      </ng-container>
+    </ng-container>
+    <div class="aui-smart-table-filter a-input" *ngIf="optionalFilters.length">
+      <label class="a-input__label">&nbsp;</label>
+      <div class="a-input__wrapper">
+        <aui-table-filter-selector [filters]="optionalFilters"></aui-table-filter-selector>
+      </div>
+    </div>
+  </div>
+
+  <div class="aui-smart-table-filters">
+    <ng-container *ngFor="let filter of optionalFilters" [ngSwitch]="filter.type">
+      <ng-container *ngSwitchCase="'select'">
+        <aui-table-select-filter class="aui-smart-table-filter" *ngIf="filter.visible" [filter]="filter" [optional]="true" (update)="onFilter($event)"></aui-table-select-filter>
+      </ng-container>
+      <ng-container *ngSwitchCase="'input'">
+        <aui-table-input-filter class="aui-smart-table-filter" *ngIf="filter.visible" [filter]="filter" [optional]="true" (update)="onFilter($event)"></aui-table-input-filter>
+      </ng-container>
+      <ng-container *ngSwitchCase="'datepicker'">
+        <aui-table-datepicker-filter class="aui-smart-table-filter" *ngIf="filter.visible" [filter]="filter" [optional]="true" (update)="onFilter($event)"></aui-table-datepicker-filter>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<div class="aui-smart-table-list">
+  <aui-table [loadDataMessage]="options.loadDataMessage" [noDataMessage]="options.noDataMessage" [loading]="rowsLoading" [columns]="columns"
+  [rows]="rows" [hasClickAction]="true" [activeSorting]="orderBy" (orderBy)="onOrderBy($event)" (rowClicked)="onClickRow($event)"></aui-table>
+  <div class="loading-overlay" *ngIf="pageChanging">
+    <div class="a-spinner a-spinner--lg"></div>
+  </div>
+</div>
+<div class="table-actions" *ngIf="hasRows">
+  <div class="item-counter">
+    <aui-item-counter [currentPage]="currentPage" [totalAmount]="totalResults" [amountPerPage]="pageSize"></aui-item-counter>
+    <div class="table-actions-separator"></div>
+    <aui-items-per-page [selectOptions]="options.pageSizeOptions" [amountPerPage]="pageSize" (returnAmount)="onPageSizeChanged($event)"></aui-items-per-page>
+  </div>
+  <aui-pagination display="numbers" [itemsPerPage]="pageSize" [totalValues]="totalResults" [currentPage]="currentPage" (update)="onPageChanged($event)"></aui-pagination>
+</div>

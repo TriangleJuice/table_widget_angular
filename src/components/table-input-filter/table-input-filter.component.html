@@ -1,0 +1,19 @@
+<ng-container *ngIf="filter">
+  <ng-container *ngIf="!optional; else optional_filter">
+    <div class="a-input has-icon-left aui-input-filter regular">
+      <label class="a-input__label" [for]="id">{{ filter.label || '&nbsp;' }}</label>
+      <div class="a-input__wrapper">
+        <button class="a-button-transparent a-button--default has-icon search-btn"><i class="fa fa-search"></i></button>
+        <input type="search" [id]="id" name="filter-{{ filter.id }}" [placeholder]="filter.placeholder || ''" [(ngModel)]="value" (ngModelChange)="onModelChanged(value)" (change)="onCommit($event)">
+        <button class="a-button-transparent a-button--default a-button--small has-icon clear-btn" (click)="onClear()" *ngIf="value"><i class="fa fa-close"></i></button>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #optional_filter>
+    <div class="a-input a-input--inline a-input--small aui-input-filter optional">
+      <label class="a-input__label a-input__label--inline" [for]="id">{{ filter.label || '&nbsp;' }}</label>
+      <input type="text" [id]="id" name="filter-{{ filter.id }}" [placeholder]="filter.placeholder || ''" [(ngModel)]="value" (ngModelChange)="onModelChanged(value)" (change)="onCommit($event)">
+      <button class="a-button-transparent a-button--default a-button--small has-icon close-btn" (click)="onClose()"><i class="fa fa-close"></i></button>
+    </div>
+  </ng-template>
+</ng-container>

@@ -1,0 +1,24 @@
+<div auiFlyout size="small">
+  <button class="a-button-outline has-icon-left" auiFlyoutAction>
+    <i class="fa fa-filter"></i> Meer filters
+  </button>
+  <div auiFlyoutZone>
+    <ul class="a-list aui-column-selector">
+      <li *ngFor="let filter of filters; let i = index; let isLast = last; let isFirst = first;" class="animated" [ngClass]="{ show: i === currentTarget }">
+        <div class="a-input__checkbox a-input__checkbox--small">
+          <input type="checkbox" id="filter-toggle-{{ id }}-{{ i }}-{{ filter.id }}" name="filter-toggle-{{ filter.id }}"
+          [checked]="filter.visible" [disabled]="filter.disabled" (change)="onFilterToggle(filter)">
+          <label for="filter-toggle-{{ id }}-{{ i }}-{{ filter.id }}">{{ filter.label }}</label>
+        </div>
+        <div class="select-actions">
+          <button [disabled]="isFirst" class="a-button-transparent a-button--tiny has-icon" (click)="onFilterMove(filter, -1)">
+            <span class="fa fa-angle-up"></span>
+          </button>
+          <button [disabled]="isLast" class="a-button-transparent a-button--tiny has-icon" (click)="onFilterMove(filter, 1)">
+            <span class="fa fa-angle-down"></span>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

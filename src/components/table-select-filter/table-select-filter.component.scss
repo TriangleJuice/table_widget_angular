@@ -1,0 +1,21 @@
+.aui-select-filter.regular {
+  width: 15rem;
+}
+
+.aui-select-filter.optional {
+  padding-right: 2em;
+
+  input {
+    padding-right: 2em;
+  }
+
+  span.close-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .a-input--filter {
+    display: inline;
+  }
+}
